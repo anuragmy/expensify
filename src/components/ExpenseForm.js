@@ -5,21 +5,23 @@ import "react-dates/lib/css/_datepicker.css";
 import classnames from "classnames";
 
 export default class ExpenseForm extends Component {
-  state = {
-    description: "",
-    amount: "",
-    note: "",
-    createdAt: moment(),
-    calanderFocused: false,
-    error: ""
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      description: props.expense ? props.expense.description : "",
+      amount: props.expense ? props.expense.amount : "",
+      note: props.expense ? props.expense.note : "",
+      createdAt: props.expense ? moment(props.expense.createdAt) : moment(),
+      calanderFocused: false,
+      error: ""
+    };
+  }
 
   onDescriptionChange = e => {
     const description = e.target.value;
-    if (description.match(/^[a-zA-Z0-9\.\,\-]{0,30}$/))
-      this.setState(() => ({
-        description
-      }));
+    this.setState(() => ({
+      description
+    }));
   };
 
   onAmountChange = e => {
