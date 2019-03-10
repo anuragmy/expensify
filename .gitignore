@@ -1,2 +1,5 @@
 # node modules
 /node_modules
+#bundle files
+/public/bundle.js
+/public/bundle.js.map
